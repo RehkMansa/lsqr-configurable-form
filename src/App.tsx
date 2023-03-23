@@ -1,8 +1,23 @@
-import { SyntheticEvent } from 'react';
+import axios from 'axios';
+import { SyntheticEvent, useState } from 'react';
 
 const App = () => {
-	const handleSubmit = (e: SyntheticEvent) => {
+	const [endpoint, setEndpoint] = useState('');
+	const [loading, setLoading] = useState(false);
+	const [responseObject, setResponseObject] = useState([]);
+
+	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
+		setLoading(true);
+		try {
+			const { data } = await axios.get(endpoint);
+
+			console.log(data, 'RESPONSE');
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -14,11 +29,12 @@ const App = () => {
 				<input
 					type="text"
 					placeholder="Enter url"
+					onChange={(e) => setEndpoint(e.target.value)}
 					className="px-8 py-2 w-full border rounded-md"
 				/>
 				<div>
 					<button
-						className="rounded-full px-10 py-2 border-2 border-spacing-2 border-double"
+						className="rounded-full px-10 py-2 border-4 border-spacing-2 border-double"
 						type="submit"
 					>
 						Submit
