@@ -31,7 +31,8 @@
             "error",
             {
                 "argsIgnorePattern": "^_",
-                "args": "none"
+                "args": "none",
+                "varsIgnorePattern": "^_"
             }
         ]
     }

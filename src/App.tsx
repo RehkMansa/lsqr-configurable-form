@@ -1,22 +1,20 @@
 import axios from "axios";
 import { SyntheticEvent, useState } from "react";
+import { PayloadResponse } from "./schema/types";
 
 const App = () => {
     const [endpoint, setEndpoint] = useState("");
-    const [loading, setLoading] = useState(true);
-    const [responseObject, setResponseObject] = useState();
+    const [loading, setLoading] = useState(false);
+    const [responseObject, setResponseObject] = useState<PayloadResponse>();
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
         setLoading(true);
         try {
             const { data } = await axios.get(endpoint);
-
-            console.log(data, "RESPONSE");
-
             setResponseObject(data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         } finally {
             setLoading(false);
         }
@@ -25,7 +23,7 @@ const App = () => {
     return (
         <main>
             {loading && (
-                <div className="fixed inset-0 bg-white/50 grid place-content-center">
+                <div className="fixed inset-0 bg-white/50 grid place-content-center text-black/70">
                     Loading...
                 </div>
             )}
@@ -46,7 +44,7 @@ const App = () => {
                 </div>
             </form>
 
-            {responseObject && <pre>{JSON.stringify(responseObject)}</pre>}
+            {responseObject && <div className="max-w-md">{JSON.stringify(responseObject)}</div>}
         </main>
     );
 };
