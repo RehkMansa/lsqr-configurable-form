@@ -1,9 +1,10 @@
-const Button = () => (
+const Button = (props: React.ComponentProps<"button">) => (
     <button
         className="rounded-full px-10 py-2 border-4 border-spacing-2 border-double"
-        type="submit"
+        type={props.type ?? "button"}
+        {...props}
     >
-        Submit
+        {props.children}
     </button>
 );
 

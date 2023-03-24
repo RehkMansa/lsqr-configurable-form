@@ -1,18 +1,28 @@
 import { InputFieldsType, TextFields } from "../../../schema/types";
 import { getTextInputType } from "../../../utils/getInputTypes";
+import Input from "../Input";
 
 type Props = Omit<InputFieldsType, "type"> & { type: TextFields };
 
 const TextInput = (props: Props) => {
-    const { description, id, label, type, ..._props } = props;
+    const { description, id, label, type, ...rest } = props;
 
     return (
-        <div>
+        <div className="grid gap-2">
             <label htmlFor={id}>{description}</label>
-            {type !== "long text" && (
-                <input placeholder={label} type={getTextInputType(type)} name={id} id={id} />
+            {type !== "long_text" && (
+                <Input
+                    className="border p-3"
+                    placeholder={label}
+                    type={getTextInputType(type)}
+                    name={id}
+                    id={id}
+                    style={rest.style}
+                />
             )}
-            {type === "long text" && <textarea placeholder={label} name={id} id={id} />}
+            {type === "long_text" && (
+                <textarea className="p-3 border" rows={4} placeholder={label} name={id} id={id} />
+            )}
         </div>
     );
 };

@@ -1,11 +1,15 @@
 import axios from "axios";
 import { SyntheticEvent, useState } from "react";
 import { PayloadResponse } from "./schema/types";
+import Button from "./components/Button";
+import { TextFieldsArr } from "./utils/coarsedInputTypes";
+import TextInput from "./components/Fields/NormalInputs/TextInput";
 
 const App = () => {
-    const [endpoint, setEndpoint] = useState("");
+    const [endpoint, setEndpoint] = useState("http://localhost:5050/configurable-form");
     const [loading, setLoading] = useState(false);
     const [responseObject, setResponseObject] = useState<PayloadResponse>();
+    const [currentPage, setCurrentPage] = useState(0);
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -18,6 +22,17 @@ const App = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const renderInputField = (type: unknown): type is (typeof TextFieldsArr)[number] => {
+        // @ts-expect-error :remove error ==> allow unknown type to be used as index value
+        if (TextFieldsArr.includes(type)) {
+            return true;
+
+            // type as (typeof TextFieldsArr)[number];
+        }
+
+        return false;
     };
 
     return (
@@ -44,7 +59,28 @@ const App = () => {
                 </div>
             </form>
 
-            {responseObject && <div className="max-w-md">{JSON.stringify(responseObject)}</div>}
+            {responseObject && (
+                <div className="max-w-md mx-auto p-3">
+                    {responseObject.pages[0].sections.map((section) => (
+                        <div className="grid gap-5" key={section.name}>
+                            {section.fields.map((field) => (
+                                <div className="grid gap-3" key={field.id}>
+                                    {renderInputField(field.type) ? (
+                                        <TextInput {...field} type={field.type} />
+                                    ) : (
+                                        <input className="border" />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                    {currentPage > 0 && currentPage < responseObject?.pages.length && (
+                        <div>
+                            <Button onClick={() => setCurrentPage(currentPage + 1)}>Next</Button>
+                        </div>
+                    )}
+                </div>
+            )}
         </main>
     );
 };

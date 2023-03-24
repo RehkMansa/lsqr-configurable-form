@@ -16,11 +16,11 @@ const cancelActionSchema = z.object({
 const actionTypesSchema = z.tuple([progressActionSchema, cancelActionSchema]);
 
 const inputOnlyFieldsSchema = z.union([
-    z.literal("short text"),
-    z.literal("long text"),
+    z.literal("short_text"),
+    z.literal("long_text"),
     z.literal("date"),
     z.literal("time"),
-    z.literal("date time"),
+    z.literal("date_time"),
     z.literal("integer"),
     z.literal("number"),
     z.literal("phone"),
@@ -30,7 +30,7 @@ const inputOnlyFieldsSchema = z.union([
 
 const inputWithDropDownSchema = z.union([
     z.literal("checkbox"),
-    z.literal("drop down"),
+    z.literal("drop_down"),
     z.literal("radio"),
 ]);
 

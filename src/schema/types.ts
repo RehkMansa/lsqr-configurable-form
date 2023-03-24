@@ -1,35 +1,35 @@
-type ProgressAction = {
+export type ProgressAction = {
     type: string;
     label: string;
     message: string;
 };
 
-type CancelAction = {
+export type CancelAction = {
     type: "cancel";
     message: string;
     label: string;
     showModal?: boolean;
 };
 
-type ActionTypes = [ProgressAction, CancelAction];
+export type ActionTypes = [ProgressAction, CancelAction];
 
-type IsTextInput = "short text" | "long text" | "phone";
+export type IsTextInput = "short_text" | "long_text" | "phone";
 
-type IsNumberInput = "integer" | "number";
+export type IsNumberInput = "integer" | "number";
 
-type IsEmailInput = "email";
+export type IsEmailInput = "email";
 
-type TextFields = IsTextInput | IsNumberInput | IsEmailInput | "label";
+export type TextFields = IsTextInput | IsNumberInput | IsEmailInput | "label";
 
-type DateTimeFields = "date" | "time" | "date time";
+export type DateTimeFields = "date" | "time" | "date_time";
 
-type InputOnlyFields = TextFields | DateTimeFields;
+export type InputOnlyFields = TextFields | DateTimeFields;
 
-type InputWithDropDown = "checkbox" | "drop down" | "radio";
+export type InputWithDropDown = "checkbox" | "drop_down" | "radio";
 
-type UploadTypeInput = "upload" | "video" | "audio" | "image";
+export type UploadTypeInput = "upload" | "video" | "audio" | "image";
 
-type Validation = Partial<{
+export type Validation = Partial<{
     required?: boolean;
     minimum?: number;
     maximum?: number;
@@ -38,42 +38,42 @@ type Validation = Partial<{
     maximum_select?: number;
 }>;
 
-type Options = {
+export type Options = {
     id: string;
     label: string;
     value: string;
 };
 
-type DropdownInputs = {
+export type DropdownInputs = {
     type: InputWithDropDown;
     options: Options[];
 };
 
-type NormalInputs = {
+export type NormalInputs = {
     type: InputOnlyFields | UploadTypeInput;
 };
 
-type InputFieldsType = {
+export type InputFieldsType = {
     id: string;
     name: string;
     label: string;
     description: string;
     validation?: Record<string, unknown>;
-    style?: any;
+    style?: React.CSSProperties;
 } & (DropdownInputs | NormalInputs);
 
-type Section = {
+export type Section = {
     name: string;
     description: string;
     fields: InputFieldsType[];
 };
 
-type PagesType = {
+export type PagesType = {
     name: string;
     title: string;
     description: string;
     actions: ActionTypes;
-    sections: Section;
+    sections: Section[];
 };
 
 export type PayloadResponse = {
@@ -85,13 +85,4 @@ export type PayloadResponse = {
         active: "active" | "inactive";
     };
     pages: PagesType[];
-};
-
-export type {
-    InputFieldsType,
-    DropdownInputs,
-    NormalInputs,
-    Validation,
-    TextFields,
-    DateTimeFields,
 };
