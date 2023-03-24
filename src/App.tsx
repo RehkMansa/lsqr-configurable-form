@@ -23,8 +23,8 @@ const options: { name: AppActions; icon: () => JSX.Element }[] = [
 ];
 
 const App = () => {
-    /* delete this */
-    const [endpoint, setEndpoint] = useState("http://localhost:5050/configurable-form");
+    /* delete this http://localhost:5050/configurable-form*/
+    const [endpoint, setEndpoint] = useState("");
     const [loading, setLoading] = useState(false);
     const [responseObject, setResponseObject] = useState<PayloadResponse>();
     const [currentPage, setCurrentPage] = useState(0);
@@ -83,11 +83,13 @@ const App = () => {
                 <div className="flex sm:flex-col items-center h-full justify-center gap-4">
                     {options.map((opt) => (
                         <button
-                            className="w-9 h-9 bg-white rounded-full grid place-items-center"
+                            className="w-9 h-9 bg-white rounded-full grid place-items-center tooltip"
                             key={opt.name}
+                            aria-label={opt.name}
                             onClick={() => handleModeChange(opt.name)}
                         >
                             {<opt.icon />}
+                            <span className="tooltiptext">{opt.name}</span>
                         </button>
                     ))}
                 </div>
@@ -125,7 +127,7 @@ const App = () => {
                             </div>
                             {section.fields.map((field) => (
                                 <div className="grid gap-3" key={field.id}>
-                                    {field.type} {/* delete this  */}
+                                    {/* field.type */} {/* isReference  */}
                                     {renderInputField(field)}
                                 </div>
                             ))}

@@ -6,7 +6,7 @@ const ImageUploader = (props: InputProps<"upload" | "image">) => {
     return (
         <div className="spacey-2">
             <p>
-                <b>{props.label}</b>
+                <b className="text-sm">{props.label}</b>
             </p>
             <p>{props.description}</p>
             {props.mode !== "preview" ? (

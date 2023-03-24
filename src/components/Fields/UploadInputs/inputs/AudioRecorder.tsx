@@ -67,7 +67,7 @@ const AudioRecorder = (props: InputProps<"audio">) => {
         <div className="grid gap-3 my-2 spacey-2">
             <div className="">
                 <p>
-                    <b>{props.label}</b>
+                    <b className="text-sm">{props.label}</b>
                 </p>
                 <p>{props.description}</p>
             </div>

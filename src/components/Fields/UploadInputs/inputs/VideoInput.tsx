@@ -86,7 +86,7 @@ const VideoInput = (props: InputProps<"video">) => {
         <div className="space-y-2">
             <div>
                 <p>
-                    <b>{props.label}</b>
+                    <b className="text-sm">{props.label}</b>
                 </p>
                 <p>{props.description}</p>
             </div>

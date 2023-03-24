@@ -18,9 +18,20 @@ const TextInput = (props: InputProps<TextFields>) => {
                     style={rest.style}
                 />
             )}
-            {type === "long_text" && (
-                <textarea className="p-3 border" rows={4} placeholder={label} name={id} id={id} />
-            )}
+            {type === "long_text" &&
+                (props.mode !== "preview" ? (
+                    <textarea
+                        className="p-3 border"
+                        rows={4}
+                        placeholder={label}
+                        name={id}
+                        id={id}
+                    />
+                ) : (
+                    <div className="bg-black/30 rounded-md p-3">
+                        Click the edit button to edit {props.name}
+                    </div>
+                ))}
         </div>
     );
 };
