@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 declare type ProgressAction = {
     type: string;
     label: string;

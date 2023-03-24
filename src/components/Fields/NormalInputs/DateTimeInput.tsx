@@ -1,7 +1,7 @@
 import { getDateTimeInput } from "../../../utils/getInputTypes";
 import Input, { InputProps } from "../Input";
 
-const DateInput = (props: InputProps<DateTimeFields>) => {
+const DateTimeInput = (props: InputProps<DateTimeFields>) => {
     const { description, label, type, id, ...rest } = props;
 
     return (
@@ -12,4 +12,4 @@ const DateInput = (props: InputProps<DateTimeFields>) => {
     );
 };
 
-export default DateInput;
+export default DateTimeInput;

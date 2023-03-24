@@ -32,6 +32,8 @@ export const getTextInputType = (type: TextFields): "number" | "text" | "email" 
 export const getDateTimeInput = (type: DateTimeFields): "date" | "time" | "datetime-local" => {
     let output: "date" | "time" | "datetime-local" = "date";
 
+    console.log(type);
+
     switch (type) {
         case "date":
             output = "date";

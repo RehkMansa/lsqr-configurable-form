@@ -1,8 +1,10 @@
-const Button = (props: React.ComponentProps<"button">) => (
+const Button = ({ className, type, ...props }: React.ComponentProps<"button">) => (
     <button
-        className="rounded-full px-10 py-2 border-4 border-spacing-2 border-double"
-        type={props.type ?? "button"}
         {...props}
+        className={`rounded-full px-10  bg-black text-white py-1.5${
+            className ? ` ${className}` : ""
+        }`}
+        type={type ?? "button"}
     >
         {props.children}
     </button>

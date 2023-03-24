@@ -1,9 +1,10 @@
 import axios from "axios";
 import { SyntheticEvent, useState } from "react";
 import Button from "./components/Button";
-import { TextFieldsArr } from "./utils/coarsedInputTypes";
+import { dateTimePredicate, textFieldPredicate } from "./utils/coarsedInputTypes";
 import TextInput from "./components/Fields/NormalInputs/TextInput";
 import Input from "./components/Fields/Input";
+import DateTimeInput from "./components/Fields/NormalInputs/DateTimeInput";
 
 const App = () => {
     const [endpoint, setEndpoint] = useState("http://localhost:5050/configurable-form");
@@ -25,11 +26,22 @@ const App = () => {
     };
 
     const renderInputField = (field: InputFieldsType) => {
-        if (TextFieldsArr.includes(field.type)) {
-            return <TextInput {...field} type={field.type as TextFields} />;
+        const { type } = field;
+
+        if (textFieldPredicate(type)) {
+            return <TextInput {...field} type={type} />;
         }
 
-        return <Input placeholder={field.label} className="border" {...field} />;
+        if (dateTimePredicate(type)) {
+            return <DateTimeInput {...field} type={type} />;
+        }
+
+        return (
+            <div className="grid gap-2">
+                <label htmlFor={field.id}>{field.description}</label>
+                <Input placeholder={field.label} className="border" {...field} />
+            </div>
+        );
     };
 
     return (
@@ -48,25 +60,26 @@ const App = () => {
                     value={endpoint}
                 />
                 <div>
-                    <Button
-                        className="rounded-full px-10 py-2 border-4 border-spacing-2 border-double"
-                        type="submit"
-                    >
+                    <Button className="my-5" type="submit">
                         Submit
                     </Button>
                 </div>
             </form>
 
             {responseObject && (
-                <div className="max-w-lg mx-auto">
+                <div className="max-w-lg mx-auto space-y-7">
                     {responseObject.pages[currentPage].sections.map((section) => (
-                        <div className="grid gap-5" key={section.name}>
+                        <section className="grid gap-5" key={section.name}>
+                            <div>
+                                <h2 className="text-xl mb-2 font-bold">{section.name}</h2>
+                                <p>{section.description}</p>
+                            </div>
                             {section.fields.map((field) => (
                                 <div className="grid gap-3" key={field.id}>
                                     {renderInputField(field)}
                                 </div>
                             ))}
-                        </div>
+                        </section>
                     ))}
 
                     <div className="flex justify-between my-5">

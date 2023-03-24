@@ -1,10 +1,10 @@
-export const IsTextInputArr = ["short_text", "long_text", "phone"] satisfies Array<IsTextInput>;
+/* export const IsTextInputArr = ["short_text", "long_text", "phone"] satisfies Array<IsTextInput>;
 
 export const IsNumberInputArr = ["integer", "number"] satisfies Array<IsNumberInput>;
 
-export const IsEmailInputArr = ["email"] satisfies Array<IsEmailInput>;
+export const IsEmailInputArr = ["email"] satisfies Array<IsEmailInput>; */
 
-export const TextFieldsArr = [
+export const TextFieldsArr: TextFields[] = [
     "short_text",
     "long_text",
     "phone",
@@ -12,9 +12,13 @@ export const TextFieldsArr = [
     "number",
     "email",
     "label",
-] satisfies Array<TextFields>;
+];
+
+export const textFieldPredicate = (x: string): x is TextFields => TextFieldsArr.includes(x);
 
 export const DateTimeFieldsArr = ["date", "time", "date_time"] satisfies Array<DateTimeFields>;
+
+export const dateTimePredicate = (x: string): x is DateTimeFields => DateTimeFieldsArr.includes(x);
 
 export const InputOnlyFieldsArr = [
     "short_text",
