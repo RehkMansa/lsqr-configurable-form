@@ -14,6 +14,13 @@ import DateTimeInput from "./components/Fields/NormalInputs/DateTimeInput";
 import { handleAxiosError } from "./utils/helpers";
 import InputWithDropDown from "./components/Fields/InputsWithDropdown";
 import UploadInputs from "./components/Fields/UploadInputs";
+import { AddIcon, EditIcon, EyeIcon } from "./components/Icons";
+
+const options: { name: AppActions; icon: () => JSX.Element }[] = [
+    { name: "edit", icon: EditIcon },
+    { name: "input", icon: AddIcon },
+    { name: "preview", icon: EyeIcon },
+];
 
 const App = () => {
     /* delete this */
@@ -21,6 +28,13 @@ const App = () => {
     const [loading, setLoading] = useState(false);
     const [responseObject, setResponseObject] = useState<PayloadResponse>();
     const [currentPage, setCurrentPage] = useState(0);
+    const [appMode, setAppMode] = useState<AppActions>("preview");
+
+    const handleModeChange = (mode: AppActions) => {
+        toast.success("You selected " + mode + " mode");
+
+        setAppMode(mode);
+    };
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -39,25 +53,46 @@ const App = () => {
     const renderInputField = (field: InputFieldsType) => {
         const { type } = field;
 
-        if (textFieldPredicate(type)) return <TextInput {...field} type={type} />;
+        if (textFieldPredicate(type)) return <TextInput {...field} type={type} mode={appMode} />;
 
-        if (dateTimePredicate(type)) return <DateTimeInput {...field} type={type} />;
+        if (dateTimePredicate(type)) return <DateTimeInput {...field} type={type} mode={appMode} />;
 
         if (inputWithDropDownPredicate(type))
-            return <InputWithDropDown {...(field as InputProps<InputWithDropDown>)} type={type} />;
+            return (
+                <InputWithDropDown
+                    {...(field as InputProps<InputWithDropDown>)}
+                    type={type}
+                    mode={appMode}
+                />
+            );
 
-        if (uploadTypePredicate(type)) return <UploadInputs {...field} type={type} />;
+        if (uploadTypePredicate(type))
+            return <UploadInputs {...field} type={type} mode={appMode} />;
 
         return (
             <div className="grid gap-2 text-red-500">
                 <label htmlFor={field.id}>{field.description}</label>
-                <Input placeholder={field.label} className="border" {...field} />
+                <Input mode={appMode} placeholder={field.label} className="border" {...field} />
             </div>
         );
     };
 
     return (
         <main className="p-3">
+            <div className="fixed sm:w-[100px] w-[300px] h-[60px] sm:h-[300px] sm:top-1/2 top-0 sm:-translate-y-1/2 sm:rounded-l-xl sm:right-0 right-1/2 translate-x-1/2 rounded-b-md sm:rounded-b-none sm:translate-x-0 bg-black">
+                <div className="flex sm:flex-col items-center h-full justify-center gap-4">
+                    {options.map((opt) => (
+                        <button
+                            className="w-9 h-9 bg-white rounded-full grid place-items-center"
+                            key={opt.name}
+                            onClick={() => handleModeChange(opt.name)}
+                        >
+                            {<opt.icon />}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
             {loading && (
                 <div className="fixed inset-0 bg-white/50 grid place-content-center text-black/70">
                     Loading...
@@ -73,6 +108,7 @@ const App = () => {
                     onChange={(e) => setEndpoint(e.target.value)}
                     value={endpoint}
                     className="py-5"
+                    mode="edit"
                 />
                 <div>
                     <Button type="submit">Submit</Button>

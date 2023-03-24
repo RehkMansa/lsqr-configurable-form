@@ -9,6 +9,7 @@ const TextInput = (props: InputProps<TextFields>) => {
             <label htmlFor={id}>{description}</label>
             {type !== "long_text" && (
                 <Input
+                    {...rest}
                     className="border p-3"
                     placeholder={label}
                     type={getTextInputType(type)}

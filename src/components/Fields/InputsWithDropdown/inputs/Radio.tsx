@@ -6,18 +6,26 @@ const Radio = (props: InputProps<"radio">) => {
     return (
         <div className="grid gap-2">
             <p>{description}</p>
-            {options.map(({ id: optionID, label, value }) => (
-                <div className="flex gap-2" key={optionID}>
-                    <Input
-                        type="radio"
-                        name={inputID}
-                        id={optionID}
-                        placeholder={label}
-                        value={value}
-                    />
-                    <label htmlFor={optionID}>{label}</label>
+            {props.mode !== "preview" &&
+                options.map(({ id: optionID, label, value }) => (
+                    <div className="flex gap-2" key={optionID}>
+                        <Input
+                            {...props}
+                            type="radio"
+                            name={inputID}
+                            id={optionID}
+                            placeholder={label}
+                            value={value}
+                        />
+                        <label htmlFor={optionID}>{label}</label>
+                    </div>
+                ))}
+
+            {props.mode === "preview" && (
+                <div className={`bg-black/30 rounded-md p-3`} style={props.style}>
+                    Available options: {options.map(({ label }) => label).join(", ")}
                 </div>
-            ))}
+            )}
         </div>
     );
 };

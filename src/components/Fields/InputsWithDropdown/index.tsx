@@ -1,6 +1,7 @@
 import { Select, CheckBox, Radio } from "./inputs";
 
 const InputWithDropDown = (props: InputProps<InputWithDropDown>) => {
+    console.log(props.mode);
     const renderDropDown = () => {
         let component = <Select {...props} type="dropdown" />;
 
