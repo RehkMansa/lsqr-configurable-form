@@ -12,8 +12,10 @@ import Input from "./components/Fields/Input";
 import DateTimeInput from "./components/Fields/NormalInputs/DateTimeInput";
 import { handleAxiosError } from "./utils/helpers";
 import InputWithDropDown from "./components/Fields/InputsWithDropdown";
+import VideoInput from "./components/Fields/UploadInputs/inputs/VideoInput";
 
 const App = () => {
+    /* delete this */
     const [endpoint, setEndpoint] = useState("http://localhost:5050/configurable-form");
     const [loading, setLoading] = useState(false);
     const [responseObject, setResponseObject] = useState<PayloadResponse>();
@@ -58,18 +60,20 @@ const App = () => {
                     Loading...
                 </div>
             )}
-            <form onSubmit={handleSubmit} className="max-w-lg mx-auto py-6 gap-2 grid">
+            <VideoInput />
+            <form
+                onSubmit={handleSubmit}
+                className="max-w-lg mx-auto py-6 gap-4 grid border p-3 my-5"
+            >
                 <Input
                     type="text"
                     placeholder="Enter url"
                     onChange={(e) => setEndpoint(e.target.value)}
-                    className="px-8 py-2 w-full border rounded-md"
                     value={endpoint}
+                    className="py-5"
                 />
                 <div>
-                    <Button className="my-5" type="submit">
-                        Submit
-                    </Button>
+                    <Button type="submit">Submit</Button>
                 </div>
             </form>
 
