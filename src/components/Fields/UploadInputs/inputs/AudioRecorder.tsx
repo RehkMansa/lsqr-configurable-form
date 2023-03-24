@@ -8,7 +8,7 @@ import Button from "../../../Button";
  *	@see https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
  *  @see https://blog.logrocket.com/how-to-create-video-audio-recorder-react/
  */
-const AudioRecorder = () => {
+const AudioRecorder = (props: InputProps<"audio">) => {
     const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
     const [isRecording, setIsRecording] = useState(false);
     const mediaRecorder = useRef<MediaRecorder>();
@@ -64,7 +64,13 @@ const AudioRecorder = () => {
     };
 
     return (
-        <div className="grid gap-3 my-2">
+        <div className="grid gap-3 my-2 spacey-2">
+            <div className="">
+                <p>
+                    <b>{props.label}</b>
+                </p>
+                <p>{props.description}</p>
+            </div>
             <button
                 className="flex items-center gap-2"
                 onClick={isRecording ? handleStopRecording : handleStartRecording}

@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-const ImageUploader = (props: InputProps<"upload">) => {
+const ImageUploader = (props: InputProps<"upload" | "image">) => {
     const [files, setFiles] = useState<FileList | null>();
 
     return (
-        <div>
-            <div className="relative min-h-[200px] border border-dashed flex items-center justify-center">
+        <div className="spacey-2">
+            <p>
+                <b>{props.label}</b>
+            </p>
+            <p>{props.description}</p>
+            <div className="relative min-h-[200px] border-4 border-dashed flex items-center justify-center">
                 <p className="max-w-sm text-center mx-auto">
                     Click Here to Upload Image or Drop Image In box
                 </p>

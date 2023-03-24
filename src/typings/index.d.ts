@@ -30,7 +30,7 @@ declare type InputWithDropDown = "checkbox" | "dropdown" | "radio";
 
 declare type UploadTypeInput = "upload" | "video" | "audio" | "image";
 
-declare type Validation = Partial<{
+declare type ValidationType = Partial<{
     required?: boolean;
     minimum?: number;
     maximum?: number;
@@ -52,7 +52,6 @@ declare type DropdownInputs = {
 
 declare type NormalInputs = {
     type: InputOnlyFields | UploadTypeInput;
-    // options?: never;
 };
 
 declare type DefaultFieldProperties = {
@@ -60,7 +59,7 @@ declare type DefaultFieldProperties = {
     name: string;
     label: string;
     description: string;
-    validation?: Record<string, unknown>;
+    validation: ValidationType;
     style?: React.CSSProperties;
 };
 

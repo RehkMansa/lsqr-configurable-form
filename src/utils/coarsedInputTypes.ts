@@ -14,11 +14,13 @@ export const TextFieldsArr: TextFields[] = [
     "label",
 ];
 
-export const textFieldPredicate = (x: string): x is TextFields => TextFieldsArr.includes(x);
+export const textFieldPredicate = (type: string): type is TextFields =>
+    TextFieldsArr.includes(type);
 
 export const DateTimeFieldsArr = ["date", "time", "date_time"] satisfies Array<DateTimeFields>;
 
-export const dateTimePredicate = (x: string): x is DateTimeFields => DateTimeFieldsArr.includes(x);
+export const dateTimePredicate = (type: string): type is DateTimeFields =>
+    DateTimeFieldsArr.includes(type);
 
 export const InputOnlyFieldsArr = [
     "short_text",
@@ -39,5 +41,9 @@ export const InputWithDropDownArr = [
     "radio",
 ] satisfies Array<InputWithDropDown>;
 
-export const inputWithDropDownPredicate = (x: string): x is InputWithDropDown =>
-    InputWithDropDownArr.includes(x);
+export const inputWithDropDownPredicate = (type: string): type is InputWithDropDown =>
+    InputWithDropDownArr.includes(type);
+export const UploadTypeInput: UploadTypeInput[] = ["upload", "video", "audio", "image"];
+
+export const uploadTypePredicate = (type: string): type is UploadTypeInput =>
+    UploadTypeInput.includes(type);

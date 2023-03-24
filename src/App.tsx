@@ -6,13 +6,14 @@ import {
     dateTimePredicate,
     inputWithDropDownPredicate,
     textFieldPredicate,
+    uploadTypePredicate,
 } from "./utils/coarsedInputTypes";
 import TextInput from "./components/Fields/NormalInputs/TextInput";
 import Input from "./components/Fields/Input";
 import DateTimeInput from "./components/Fields/NormalInputs/DateTimeInput";
 import { handleAxiosError } from "./utils/helpers";
 import InputWithDropDown from "./components/Fields/InputsWithDropdown";
-import VideoInput from "./components/Fields/UploadInputs/inputs/VideoInput";
+import UploadInputs from "./components/Fields/UploadInputs";
 
 const App = () => {
     /* delete this */
@@ -45,6 +46,8 @@ const App = () => {
         if (inputWithDropDownPredicate(type))
             return <InputWithDropDown {...(field as InputProps<InputWithDropDown>)} type={type} />;
 
+        if (uploadTypePredicate(type)) return <UploadInputs {...field} type={type} />;
+
         return (
             <div className="grid gap-2 text-red-500">
                 <label htmlFor={field.id}>{field.description}</label>
@@ -60,7 +63,6 @@ const App = () => {
                     Loading...
                 </div>
             )}
-            <VideoInput />
             <form
                 onSubmit={handleSubmit}
                 className="max-w-lg mx-auto py-6 gap-4 grid border p-3 my-5"

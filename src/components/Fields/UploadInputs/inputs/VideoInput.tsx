@@ -4,7 +4,7 @@ import { ErrorToast } from "../../../Toast";
 
 const mimeType = 'video/webm; codecs="opus,vp8"';
 
-const VideoInput = () => {
+const VideoInput = (props: InputProps<"video">) => {
     const mediaRecorder = useRef<MediaRecorder>();
 
     const liveVideoFeed = useRef<HTMLVideoElement>(null);
@@ -83,8 +83,14 @@ const VideoInput = () => {
     };
 
     return (
-        <div>
-            <div className="video-controls">
+        <div className="space-y-2">
+            <div>
+                <p>
+                    <b>{props.label}</b>
+                </p>
+                <p>{props.description}</p>
+            </div>
+            <div id={props.id} className="video-controls">
                 {!isRecording && (
                     <button
                         className="flex gap-4 items-center"
@@ -136,18 +142,18 @@ const VideoInput = () => {
                 )}
             </div>
 
-            <div className="video-player">
+            <div className="video-player grid my-3">
                 {!recordedVideo && (
                     <video
                         ref={liveVideoFeed}
                         autoPlay
-                        className="live-player max-w-[300px] h-[300px]"
+                        className="h-[300px] object-cover w-full"
                     ></video>
                 )}
                 {recordedVideo && (
                     <div className="recorded-player">
                         <video
-                            className="live-player max-w-[300px] h-[300px]"
+                            className="w-full object-cover h-[300px]"
                             src={recordedVideo}
                             controls
                         ></video>
