@@ -35,7 +35,7 @@ export const InputOnlyFieldsArr = [
 
 export const InputWithDropDownArr = [
     "checkbox",
-    "drop_down",
+    "dropdown",
     "radio",
 ] satisfies Array<InputWithDropDown>;
 

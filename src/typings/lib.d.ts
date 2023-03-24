@@ -26,7 +26,7 @@ declare type DateTimeFields = "date" | "time" | "date_time";
 
 declare type InputOnlyFields = TextFields | DateTimeFields;
 
-declare type InputWithDropDown = "checkbox" | "drop_down" | "radio";
+declare type InputWithDropDown = "checkbox" | "dropdown" | "radio";
 
 declare type UploadTypeInput = "upload" | "video" | "audio" | "image";
 

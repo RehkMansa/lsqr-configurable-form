@@ -44,7 +44,7 @@ const App = () => {
             return <InputWithDropDown {...(field as InputProps<InputWithDropDown>)} type={type} />;
 
         return (
-            <div className="grid gap-2">
+            <div className="grid gap-2 text-red-500">
                 <label htmlFor={field.id}>{field.description}</label>
                 <Input placeholder={field.label} className="border" {...field} />
             </div>
@@ -83,6 +83,7 @@ const App = () => {
                             </div>
                             {section.fields.map((field) => (
                                 <div className="grid gap-3" key={field.id}>
+                                    {field.type} {/* delete this  */}
                                     {renderInputField(field)}
                                 </div>
                             ))}

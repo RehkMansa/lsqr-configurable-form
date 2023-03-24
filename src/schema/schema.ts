@@ -30,7 +30,7 @@ const inputOnlyFieldsSchema = z.union([
 
 const inputWithDropDownSchema = z.union([
     z.literal("checkbox"),
-    z.literal("drop_down"),
+    z.literal("dropdown"),
     z.literal("radio"),
 ]);
 

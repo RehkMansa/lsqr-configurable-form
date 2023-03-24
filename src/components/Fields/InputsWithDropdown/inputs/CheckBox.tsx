@@ -7,8 +7,7 @@ const CheckBox = (props: InputProps<"checkbox">) => {
         <div className="grid gap-2">
             <p>{description}</p>
             {options.map(({ id: optionID, label, value }) => (
-                <div key={optionID}>
-                    <label htmlFor={optionID}>{label}</label>
+                <div className="flex gap-2" key={optionID}>
                     <Input
                         type="checkbox"
                         name={inputID}
@@ -16,6 +15,7 @@ const CheckBox = (props: InputProps<"checkbox">) => {
                         placeholder={label}
                         value={value}
                     />
+                    <label htmlFor={optionID}>{label}</label>
                 </div>
             ))}
         </div>
