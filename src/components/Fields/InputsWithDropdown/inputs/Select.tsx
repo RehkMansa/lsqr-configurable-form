@@ -1,5 +1,3 @@
-import { InputProps } from "../../Input";
-
 const Select = (props: InputProps<"drop_down">) => {
     const { options, description, id: inputID } = props;
 

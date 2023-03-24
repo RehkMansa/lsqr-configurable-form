@@ -1,4 +1,4 @@
-import Input, { InputProps } from "../../Input";
+import Input from "../../Input";
 
 const Radio = (props: InputProps<"radio">) => {
     const { options, description, id: inputID } = props;

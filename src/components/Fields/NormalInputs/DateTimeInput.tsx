@@ -1,5 +1,5 @@
 import { getDateTimeInput } from "../../../utils/getInputTypes";
-import Input, { InputProps } from "../Input";
+import Input from "../Input";
 
 const DateTimeInput = (props: InputProps<DateTimeFields>) => {
     const { description, label, type, id, ...rest } = props;

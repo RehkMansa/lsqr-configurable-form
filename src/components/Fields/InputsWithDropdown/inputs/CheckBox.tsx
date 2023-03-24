@@ -1,4 +1,4 @@
-import Input, { InputProps } from "../../Input";
+import Input from "../../Input";
 
 const CheckBox = (props: InputProps<"checkbox">) => {
     const { options, description, id: inputID } = props;

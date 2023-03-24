@@ -1,5 +1,5 @@
 import { getTextInputType } from "../../../utils/getInputTypes";
-import Input, { InputProps } from "../Input";
+import Input from "../Input";
 
 const TextInput = (props: InputProps<TextFields>) => {
     const { description, id, label, type, ...rest } = props;

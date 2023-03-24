@@ -1,4 +1,3 @@
-import { InputProps } from "../Input";
 import { Select, CheckBox, Radio } from "./inputs";
 
 const InputWithDropDown = (props: InputProps<InputWithDropDown>) => {
@@ -23,7 +22,7 @@ const InputWithDropDown = (props: InputProps<InputWithDropDown>) => {
         return component;
     };
 
-    return renderDropDown;
+    return renderDropDown();
 };
 
 export default InputWithDropDown;

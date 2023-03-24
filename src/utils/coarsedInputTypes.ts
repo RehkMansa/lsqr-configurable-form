@@ -38,3 +38,6 @@ export const InputWithDropDownArr = [
     "drop_down",
     "radio",
 ] satisfies Array<InputWithDropDown>;
+
+export const inputWithDropDownPredicate = (x: string): x is InputWithDropDown =>
+    InputWithDropDownArr.includes(x);

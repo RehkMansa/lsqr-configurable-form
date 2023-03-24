@@ -2,11 +2,16 @@ import axios from "axios";
 import { SyntheticEvent, useState } from "react";
 import toast from "react-hot-toast";
 import Button from "./components/Button";
-import { dateTimePredicate, textFieldPredicate } from "./utils/coarsedInputTypes";
+import {
+    dateTimePredicate,
+    inputWithDropDownPredicate,
+    textFieldPredicate,
+} from "./utils/coarsedInputTypes";
 import TextInput from "./components/Fields/NormalInputs/TextInput";
 import Input from "./components/Fields/Input";
 import DateTimeInput from "./components/Fields/NormalInputs/DateTimeInput";
 import { handleAxiosError } from "./utils/helpers";
+import InputWithDropDown from "./components/Fields/InputsWithDropdown";
 
 const App = () => {
     const [endpoint, setEndpoint] = useState("http://localhost:5050/configurable-form");
@@ -31,13 +36,12 @@ const App = () => {
     const renderInputField = (field: InputFieldsType) => {
         const { type } = field;
 
-        if (textFieldPredicate(type)) {
-            return <TextInput {...field} type={type} />;
-        }
+        if (textFieldPredicate(type)) return <TextInput {...field} type={type} />;
 
-        if (dateTimePredicate(type)) {
-            return <DateTimeInput {...field} type={type} />;
-        }
+        if (dateTimePredicate(type)) return <DateTimeInput {...field} type={type} />;
+
+        if (inputWithDropDownPredicate(type))
+            return <InputWithDropDown {...(field as InputProps<InputWithDropDown>)} type={type} />;
 
         return (
             <div className="grid gap-2">

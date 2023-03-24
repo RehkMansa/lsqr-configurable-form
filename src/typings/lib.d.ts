@@ -90,3 +90,11 @@ declare type PayloadResponse = {
     };
     pages: PagesType[];
 };
+
+/**
+ * For some weird reasons, the options property is missing in: `InputFieldsType`
+ * This utility type helps map the dropdown input to options and vice-versa
+ */
+declare type InputProps<T extends InputFieldsType["type"]> = T extends NormalInputs["type"]
+    ? Omit<InputFieldsType, "type"> & { type: T }
+    : Omit<DefaultFieldProperties & DropdownInputs, "type"> & { type: T };
