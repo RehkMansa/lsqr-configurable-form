@@ -24,15 +24,12 @@ const App = () => {
         }
     };
 
-    const renderInputField = (type: unknown): type is (typeof TextFieldsArr)[number] => {
-        // @ts-expect-error :remove error ==> allow unknown type to be used as index value
-        if (TextFieldsArr.includes(type)) {
-            return true;
-
-            // type as (typeof TextFieldsArr)[number];
+    const renderInputField = (field: InputFieldsType) => {
+        if (TextFieldsArr.includes(field.type)) {
+            return <TextInput {...field} type={field.type as TextFields} />;
         }
 
-        return false;
+        return <Input placeholder={field.label} className="border" {...field} />;
     };
 
     return (
@@ -66,18 +63,7 @@ const App = () => {
                         <div className="grid gap-5" key={section.name}>
                             {section.fields.map((field) => (
                                 <div className="grid gap-3" key={field.id}>
-                                    {renderInputField(field.type) ? (
-                                        <TextInput {...field} type={field.type} />
-                                    ) : (
-                                        <div>
-                                            <p>{field.description}</p>
-                                            <Input
-                                                placeholder={field.label}
-                                                className="border"
-                                                {...field}
-                                            />
-                                        </div>
-                                    )}
+                                    {renderInputField(field)}
                                 </div>
                             ))}
                         </div>

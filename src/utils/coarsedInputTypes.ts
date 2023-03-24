@@ -1,10 +1,10 @@
-export const IsTextInputArr: Array<IsTextInput> = ["short_text", "long_text", "phone"];
+export const IsTextInputArr = ["short_text", "long_text", "phone"] satisfies Array<IsTextInput>;
 
-export const IsNumberInputArr: Array<IsNumberInput> = ["integer", "number"];
+export const IsNumberInputArr = ["integer", "number"] satisfies Array<IsNumberInput>;
 
-export const IsEmailInputArr: Array<IsEmailInput> = ["email"];
+export const IsEmailInputArr = ["email"] satisfies Array<IsEmailInput>;
 
-export const TextFieldsArr: Array<TextFields> = [
+export const TextFieldsArr = [
     "short_text",
     "long_text",
     "phone",
@@ -12,11 +12,11 @@ export const TextFieldsArr: Array<TextFields> = [
     "number",
     "email",
     "label",
-];
+] satisfies Array<TextFields>;
 
-export const DateTimeFieldsArr: Array<DateTimeFields> = ["date", "time", "date_time"];
+export const DateTimeFieldsArr = ["date", "time", "date_time"] satisfies Array<DateTimeFields>;
 
-export const InputOnlyFieldsArr: Array<InputOnlyFields> = [
+export const InputOnlyFieldsArr = [
     "short_text",
     "long_text",
     "phone",
@@ -27,6 +27,10 @@ export const InputOnlyFieldsArr: Array<InputOnlyFields> = [
     "date",
     "time",
     "date_time",
-];
+] satisfies Array<InputOnlyFields>;
 
-export const InputWithDropDownArr: Array<InputWithDropDown> = ["checkbox", "drop_down", "radio"];
+export const InputWithDropDownArr = [
+    "checkbox",
+    "drop_down",
+    "radio",
+] satisfies Array<InputWithDropDown>;
