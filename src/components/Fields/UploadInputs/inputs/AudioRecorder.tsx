@@ -71,32 +71,38 @@ const AudioRecorder = (props: InputProps<"audio">) => {
                 </p>
                 <p>{props.description}</p>
             </div>
-            <button
-                className="flex items-center gap-2"
-                onClick={isRecording ? handleStopRecording : handleStartRecording}
-            >
-                <span
-                    className={`w-[32px] h-[32px] rounded-full flex items-center justify-center px-2 text-white ${
-                        isRecording ? "bg-[#FF0000]/80" : "bg-black"
-                    }`}
+            {props.mode !== "preview" ? (
+                <button
+                    className="flex items-center gap-2"
+                    onClick={isRecording ? handleStopRecording : handleStartRecording}
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
+                    <span
+                        className={`w-[32px] h-[32px] rounded-full flex items-center justify-center px-2 text-white ${
+                            isRecording ? "bg-[#FF0000]/80" : "bg-black"
+                        }`}
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
-                        />
-                    </svg>
-                </span>
-                <span className="text-lg">{isRecording ? "Stop" : "Start"} Recording</span>
-            </button>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
+                            />
+                        </svg>
+                    </span>
+                    <span className="text-lg">{isRecording ? "Stop" : "Start"} Recording</span>
+                </button>
+            ) : (
+                <div className="bg-black/30 rounded-md p-3">
+                    Click the edit button to enable voice record options
+                </div>
+            )}
             {audio && (
                 <div className="flex gap-4">
                     <div>
