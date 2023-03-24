@@ -1,5 +1,3 @@
-import { TextFields } from "../schema/types";
-
 export const getTextInputType = (type: TextFields): "number" | "text" | "email" | "tel" => {
     switch (type) {
         case "long_text":

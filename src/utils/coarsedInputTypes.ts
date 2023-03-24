@@ -1,13 +1,3 @@
-import {
-    DateTimeFields,
-    InputOnlyFields,
-    InputWithDropDown,
-    IsEmailInput,
-    IsNumberInput,
-    IsTextInput,
-    TextFields,
-} from "../schema/types";
-
 export const IsTextInputArr: Array<IsTextInput> = ["short_text", "long_text", "phone"];
 
 export const IsNumberInputArr: Array<IsNumberInput> = ["integer", "number"];

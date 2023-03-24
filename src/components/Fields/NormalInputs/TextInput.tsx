@@ -1,4 +1,3 @@
-import { TextFields } from "../../../schema/types";
 import { getTextInputType } from "../../../utils/getInputTypes";
 import Input, { InputProps } from "../Input";
 

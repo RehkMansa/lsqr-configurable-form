@@ -1,6 +1,5 @@
 import axios from "axios";
 import { SyntheticEvent, useState } from "react";
-import { PayloadResponse } from "./schema/types";
 import Button from "./components/Button";
 import { TextFieldsArr } from "./utils/coarsedInputTypes";
 import TextInput from "./components/Fields/NormalInputs/TextInput";
