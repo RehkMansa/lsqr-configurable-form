@@ -1,10 +1,12 @@
 import axios from "axios";
 import { SyntheticEvent, useState } from "react";
+import toast from "react-hot-toast";
 import Button from "./components/Button";
 import { dateTimePredicate, textFieldPredicate } from "./utils/coarsedInputTypes";
 import TextInput from "./components/Fields/NormalInputs/TextInput";
 import Input from "./components/Fields/Input";
 import DateTimeInput from "./components/Fields/NormalInputs/DateTimeInput";
+import { handleAxiosError } from "./utils/helpers";
 
 const App = () => {
     const [endpoint, setEndpoint] = useState("http://localhost:5050/configurable-form");
@@ -19,7 +21,8 @@ const App = () => {
             const { data } = await axios.get(endpoint);
             setResponseObject(data);
         } catch (error) {
-            console.error(error);
+            const errorMessage = handleAxiosError(error);
+            toast.error(errorMessage);
         } finally {
             setLoading(false);
         }
