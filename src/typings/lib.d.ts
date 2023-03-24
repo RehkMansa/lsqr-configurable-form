@@ -39,7 +39,7 @@ declare type Validation = Partial<{
     maximum_select?: number;
 }>;
 
-declare type Options = {
+declare type OptionsType = {
     id: string;
     label: string;
     value: string;
@@ -47,21 +47,24 @@ declare type Options = {
 
 declare type DropdownInputs = {
     type: InputWithDropDown;
-    options: Options[];
+    options: OptionsType[];
 };
 
 declare type NormalInputs = {
     type: InputOnlyFields | UploadTypeInput;
+    // options?: never;
 };
 
-declare type InputFieldsType = {
+declare type DefaultFieldProperties = {
     id: string;
     name: string;
     label: string;
     description: string;
     validation?: Record<string, unknown>;
     style?: React.CSSProperties;
-} & (DropdownInputs | NormalInputs);
+};
+
+declare type InputFieldsType = DefaultFieldProperties & (DropdownInputs | NormalInputs);
 
 declare type Section = {
     name: string;

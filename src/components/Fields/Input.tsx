@@ -1,8 +1,12 @@
 import { ComponentProps } from "react";
 
-export type InputProps<T extends InputFieldsType["type"]> = Omit<InputFieldsType, "type"> & {
-    type: T;
-};
+/**
+ * For some weird reasons, the options property is missing in: `InputFieldsType`
+ * This utility type helps map the dropdown input to options and vice-versa
+ */
+export type InputProps<T extends InputFieldsType["type"]> = T extends NormalInputs["type"]
+    ? Omit<InputFieldsType, "type"> & { type: T }
+    : Omit<DefaultFieldProperties & DropdownInputs, "type"> & { type: T };
 
 const Input = ({
     className,
