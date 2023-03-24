@@ -1,4 +1,9 @@
 import { ComponentProps } from "react";
+import { InputFieldsType } from "../../schema/types";
+
+export type InputProps<T extends InputFieldsType["type"]> = Omit<InputFieldsType, "type"> & {
+    type: T;
+};
 
 const Input = ({
     className,

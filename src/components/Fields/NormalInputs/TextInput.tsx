@@ -1,10 +1,8 @@
-import { InputFieldsType, TextFields } from "../../../schema/types";
+import { TextFields } from "../../../schema/types";
 import { getTextInputType } from "../../../utils/getInputTypes";
-import Input from "../Input";
+import Input, { InputProps } from "../Input";
 
-type Props = Omit<InputFieldsType, "type"> & { type: TextFields };
-
-const TextInput = (props: Props) => {
+const TextInput = (props: InputProps<TextFields>) => {
     const { description, id, label, type, ...rest } = props;
 
     return (

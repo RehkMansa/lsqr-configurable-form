@@ -21,4 +21,6 @@ export const getTextInputType = (type: TextFields): "number" | "text" | "email" 
     }
 };
 
-export const helloworld = "";
+export const getDateTimeInput = (type: DateTimeFields) => {
+    return "";
+};
